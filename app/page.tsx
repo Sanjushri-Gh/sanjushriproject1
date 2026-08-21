@@ -29,6 +29,10 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
+const [headerScrolled, setHeaderScrolled] = useState(false);
+const [scrollProgress, setScrollProgress] = useState(0);
+const storyVideo = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
   if (!supabase) return;
 
@@ -45,9 +49,52 @@ const [error, setError] = useState("");
   return () => {
     subscription.unsubscribe();
   };
+},[]);
+useEffect(() => {
+  const elements = document.querySelectorAll(".sf-scroll-reveal");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("sf-visible");
+        } else {
+          entry.target.classList.remove("sf-visible");
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+    }
+  );
+
+  elements.forEach((element) => observer.observe(element));
+
+  return () => observer.disconnect();
+}, []);
+useEffect(() => {
+  const handleScroll = () => {
+    setHeaderScrolled(window.scrollY > 40);
+
+    const scrollTop = window.scrollY;
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress =
+      scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    setScrollProgress(progress);
+  };
+
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
 }, []);
 
-  const storyVideo = useRef<HTMLVideoElement>(null);
   const handleLogin = async (e: React.FormEvent) => {
   e.preventDefault();
 
@@ -76,7 +123,14 @@ const [error, setError] = useState("");
   };
 
   return <main>
-    <header className="header">
+  <div
+    className="sf-scroll-progress"
+    style={{ width: `${scrollProgress}%` }}
+  />
+
+  <header
+  className={`header ${headerScrolled ? "sf-header-scrolled" : ""}`}
+>
       <a className="brand" href="#home" onClick={closeMenu}><Brand /></a>
       <nav className={menuOpen ? "nav open" : "nav"}>
         <a href="#about" onClick={closeMenu}>About us</a><a href="#work" onClick={closeMenu}>Our work</a><a href="#stories" onClick={closeMenu}>Stories</a><a href="#contact" onClick={closeMenu}>Contact</a>
@@ -124,23 +178,73 @@ const [error, setError] = useState("");
     </header>
 
     <section className="hero" id="home">
-      <div className="hero-copy"><p className="eyebrow">ROOTED IN POSSIBILITY</p><h1>Every future<br/>deserves a <em>beginning.</em></h1><p className="intro">We work alongside communities in India to create the conditions where children learn, women lead, and families thrive.</p><a className="text-link" href="#work">Explore our work <ArrowDownRight size={18}/></a></div>
-      <div className="hero-visual"><img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=90" alt="Children smiling together outdoors"/><div className="impact-stamp"><span>Since 2026</span><strong>Small steps.<br/>Shared futures.</strong></div></div>
-      <div className="hero-note"><span className="line"></span><p>We believe meaningful change is built with people, not for them.</p></div>
-    </section>
+  <div className="hero-copy">
+    <p className="eyebrow sf-hero-animate">
+      ROOTED IN POSSIBILITY
+    </p>
 
-    <section className="statement" id="about"><div><p className="eyebrow">OUR PURPOSE</p><h2>Turning care into <em>everyday opportunity.</em></h2></div><p className="statement-text">Sanjushri Foundation is a people-first organisation creating practical, locally led pathways to education, better health, and economic confidence.</p></section>
+    <h1 className="sf-hero-animate sf-hero-delay-1">
+      Every future
+      <br />
+      deserves a <em>beginning.</em>
+    </h1>
 
-    <section className="feature" id="stories"><div className="feature-image"><video ref={storyVideo} poster="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85" controls={videoPlaying} playsInline preload="metadata" onPlay={() => setVideoPlaying(true)} onPause={() => setVideoPlaying(false)}><source src="/community-story.mp4" type="video/mp4"/>Your browser does not support video playback.</video>{!videoPlaying && <button className="play" aria-label="Play our story" onClick={playStory}><Play fill="currentColor" size={19}/></button>}</div><div className="feature-copy"><p className="eyebrow">ONE STORY, MANY RIPPLE EFFECTS</p><blockquote>When a girl is heard, her whole community begins to listen.</blockquote><p>Our learning circles bring together students, parents, and mentors - building the confidence to stay in school and shape what comes next.</p><a className="text-link" href="#work">Meet our programs <ArrowDownRight size={18}/></a></div></section>
+    <p className="intro sf-hero-animate sf-hero-delay-2">
+      We work alongside communities in India to create the conditions
+      where children learn, women lead, and families thrive.
+    </p>
 
-    <section className="programs" id="work"><div className="section-head"><div><p className="eyebrow">WHAT WE DO</p><h2>Local action.<br/><em>Lasting change.</em></h2></div><p>We focus on the moments that can shift a life forward - and stay accountable to the people who know their communities best.</p></div><div className="program-grid">{programs.map((program) => <article className="program-card" key={program.number}><img src={program.image} alt=""/><div className="program-content"><span>{program.number}</span><h3>{program.title}</h3><p>{program.text}</p><button aria-label={`Learn about ${program.title}`} onClick={() => setModalOpen(true)}><ArrowUpRight size={19}/></button></div></article>)}</div></section>
+    <a
+      className="text-link sf-button sf-hero-animate sf-hero-delay-3"
+      href="#work"
+    >
+      Explore our work <ArrowDownRight size={18} />
+    </a>
+  </div>
 
-    <section className="numbers"><div><strong>12,400<span>+</span></strong><p>children learning</p></div><div><strong>36</strong><p>community partners</p></div><div><strong>8,900<span>+</span></strong><p>women supported</p></div><div><strong>7</strong><p>districts reached</p></div></section>
+  <div className="hero-visual sf-hero-animate sf-hero-delay-2">
+    <img
+      src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1200&q=90"
+      alt="Children smiling together outdoors"
+    />
 
-    <section className="founder"><div className="founder-photo"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=850&q=85" alt="Sanjushri Ghatol, founder of Sanjushri Foundation"/></div><div className="founder-copy"><p className="eyebrow">A NOTE FROM OUR FOUNDER</p><h2>Change starts when we choose to <em>show up.</em></h2><p>Sanjushri Foundation began with a simple belief: the most durable answers already exist inside communities. Our role is to listen deeply, build trust, and make sure ambition has the tools to grow.</p><div className="signature"><strong>Sanjushri Ghatol</strong><span>Founder, Sanjushri Foundation</span></div></div></section>
+    <div className="impact-stamp">
+      <span>Since 2026</span>
+      <strong>
+        Small steps.
+        <br />
+        Shared futures.
+      </strong>
+    </div>
+  </div>
 
-    <section className="cta" id="contact"><div className="cta-image"><img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1100&q=85" alt="Community volunteers working together"/></div><div className="cta-copy"><Sparkles size={26}/><p className="eyebrow">BUILD THE NEXT BEGINNING</p><h2>Your support<br/>can go <em>further.</em></h2><p>Join a community of people who believe every child and every woman deserves the room to flourish.</p><button className="donate light" onClick={() => setModalOpen(true)}>Donate today <Heart size={16}/></button></div></section>
-<section className="contact-section" id="contact-form">
+  <div className="hero-note sf-hero-animate sf-hero-delay-3">
+    <span className="line"></span>
+
+    <p>
+      We believe meaningful change is built with people, not for them.
+    </p>
+  </div>
+</section>
+    <section className="statement sf-scroll-reveal" id="about"><div><p className="eyebrow">OUR PURPOSE</p><h2>Turning care into <em>everyday opportunity.</em></h2></div><p className="statement-text">Sanjushri Foundation is a people-first organisation creating practical, locally led pathways to education, better health, and economic confidence.</p></section>
+
+    <section className="feature sf-scroll-reveal" id="stories"><div className="feature-image"><video ref={storyVideo} poster="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85" controls={videoPlaying} playsInline preload="metadata" onPlay={() => setVideoPlaying(true)} onPause={() => setVideoPlaying(false)}><source src="/community-story.mp4" type="video/mp4"/>Your browser does not support video playback.</video>{!videoPlaying && <button className="play" aria-label="Play our story" onClick={playStory}><Play fill="currentColor" size={19}/></button>}</div><div className="feature-copy"><p className="eyebrow">ONE STORY, MANY RIPPLE EFFECTS</p><blockquote>When a girl is heard, her whole community begins to listen.</blockquote><p>Our learning circles bring together students, parents, and mentors - building the confidence to stay in school and shape what comes next.</p><a className="text-link" href="#work">Meet our programs <ArrowDownRight size={18}/></a></div></section>
+
+    <section className="programs sf-scroll-reveal" id="work"><div className="section-head"><div><p className="eyebrow">WHAT WE DO</p><h2>Local action.<br/><em>Lasting change.</em></h2></div><p>We focus on the moments that can shift a life forward - and stay accountable to the people who know their communities best.</p></div><div className="program-grid">{programs.map((program) =>
+     <article
+  className={`program-card sf-scroll-reveal sf-reveal-delay-${program.number}`}
+  key={program.number}
+  onClick={() => setModalOpen(true)}
+  role="button"
+  tabIndex={0}
+><img src={program.image} alt=""/><div className="program-content"><span>{program.number}</span><h3>{program.title}</h3><p>{program.text}</p><button aria-label={`Learn about ${program.title}`} onClick={() => setModalOpen(true)}><ArrowUpRight size={19}/></button></div></article>)}</div></section>
+
+    <section className="numbers sf-scroll-reveal"><div><strong>12,400<span>+</span></strong><p>children learning</p></div><div><strong>36</strong><p>community partners</p></div><div><strong>8,900<span>+</span></strong><p>women supported</p></div><div><strong>7</strong><p>districts reached</p></div></section>
+
+    <section className="founder sf-scroll-reveal"><div className="founder-photo"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=850&q=85" alt="Sanjushri Ghatol, founder of Sanjushri Foundation"/></div><div className="founder-copy"><p className="eyebrow">A NOTE FROM OUR FOUNDER</p><h2>Change starts when we choose to <em>show up.</em></h2><p>Sanjushri Foundation began with a simple belief: the most durable answers already exist inside communities. Our role is to listen deeply, build trust, and make sure ambition has the tools to grow.</p><div className="signature"><strong>Sanjushri Ghatol</strong><span>Founder, Sanjushri Foundation</span></div></div></section>
+
+    <section className="cta sf-scroll-reveal" id="contact"><div className="cta-image"><img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1100&q=85" alt="Community volunteers working together"/></div><div className="cta-copy"><Sparkles size={26}/><p className="eyebrow">BUILD THE NEXT BEGINNING</p><h2>Your support<br/>can go <em>further.</em></h2><p>Join a community of people who believe every child and every woman deserves the room to flourish.</p><button className="donate light" onClick={() => setModalOpen(true)}>Donate today <Heart size={16}/></button></div></section>
+<section className="contact-section sf-scroll-reveal" id="contact-form">
   <div className="contact-heading">
     <p className="eyebrow">GET IN TOUCH</p>
 
@@ -372,7 +476,7 @@ const [error, setError] = useState("");
       </p>
 
       <div className="donation-options">
-
+    
         <button
   className="donation-option"
   onClick={() => {
@@ -465,7 +569,7 @@ const [error, setError] = useState("");
         We'll contact you about the next steps.
       </p>
 
-      <form className="auth-form">
+      <form className="clothes-form">
 
         <input
           type="text"
@@ -492,10 +596,11 @@ const [error, setError] = useState("");
         />
 
         <input
-          type="text"
-          placeholder="Approximate quantity"
-          required
-        />
+  className="full-width"
+  type="text"
+  placeholder="Approximate quantity"
+  required
+/>
 
         <button
   type="button"
@@ -564,8 +669,7 @@ const [error, setError] = useState("");
         We'll contact you about the next steps.
       </p>
 
-      <form
-  className="auth-form"
+      <form className="donation-form"
   onSubmit={async (e) => {
     e.preventDefault();
 
@@ -667,8 +771,7 @@ const [error, setError] = useState("");
         We'll contact you about the next steps.
       </p>
 
-      <form className="auth-form">
-
+     <form className="donation-form">
         <input
           type="text"
           placeholder="Your name"
@@ -744,7 +847,7 @@ const [error, setError] = useState("");
         donate. We'll contact you about the next steps.
       </p>
 
-      <form className="auth-form">
+      <form className="donation-form">
 
         <input
           type="text"

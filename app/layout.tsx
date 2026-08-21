@@ -1,3 +1,4 @@
+import GeminiChat from "./components/GeminiChat";
 import { DM_Mono, Manrope, Playfair_Display } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -30,6 +31,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${manrope.variable} ${playfair.variable} ${dmMono.variable}`}>{children}</body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${manrope.variable} ${playfair.variable} ${dmMono.variable}`}
+      >
+        {children}
+        <GeminiChat />
+      </body>
+    </html>
+  );
 }

@@ -1382,3 +1382,1254 @@ footer .copyright {
     object-fit: cover;
   }
 }
+/* ================================
+   SANJUSHRI FOUNDATION ANIMATIONS
+   ================================ */
+
+@keyframes sf-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sf-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sf-soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Hero animation */
+
+.sf-hero-animate {
+  animation: sf-fade-up 0.9s ease-out both;
+}
+
+.sf-hero-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.sf-hero-delay-2 {
+  animation-delay: 0.3s;
+}
+
+.sf-hero-delay-3 {
+  animation-delay: 0.45s;
+}
+
+/* Scroll reveal */
+
+.sf-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.sf-reveal.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image hover */
+
+.sf-image-hover {
+  overflow: hidden;
+}
+
+.sf-image-hover img {
+  transition: transform 0.6s ease;
+}
+
+.sf-image-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* Buttons */
+
+.sf-button {
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.sf-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Floating AI button */
+
+.sf-ai-float {
+  animation: sf-soft-float 3s ease-in-out infinite;
+}
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-hero-animate,
+  .sf-ai-float {
+    animation: none;
+  }
+
+  .sf-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .sf-image-hover img,
+  .sf-button {
+    transition: none;
+  }
+}
+/* ================================
+   SANJUSHRI HERO ANIMATION
+   ================================ */
+
+@keyframes sanjushriHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero .sf-hero-animate {
+  opacity: 0;
+  animation: sanjushriHeroReveal 1s ease-out forwards;
+}
+
+.hero .sf-hero-delay-1 {
+  animation-delay: 0.2s;
+}
+
+.hero .sf-hero-delay-2 {
+  animation-delay: 0.4s;
+}
+
+.hero .sf-hero-delay-3 {
+  animation-delay: 0.6s;
+}
+/* Sanjushri Foundation — Hero entrance */
+
+@keyframes sanjushriReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero .sf-hero-animate {
+  opacity: 0;
+  animation: sanjushriReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero .sf-hero-delay-1 {
+  animation-delay: 0.15s;
+}
+
+.hero .sf-hero-delay-2 {
+  animation-delay: 0.3s;
+}
+
+.hero .sf-hero-delay-3 {
+  animation-delay: 0.45s;
+}
+/* Premium scroll reveal */
+.sf-scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sf-scroll-reveal.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sf-scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+.sf-scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sf-scroll-reveal.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+/* ================================
+   PROGRAM CARD HOVER EFFECT
+   ================================ */
+
+.program-card {
+  overflow: hidden;
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 400ms ease;
+}
+
+.program-card img {
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.program-card:hover {
+  transform: translateY(-6px);
+}
+
+.program-card:hover img {
+  transform: scale(1.05);
+}
+
+.program-card button {
+  transition:
+    transform 300ms ease,
+    background-color 300ms ease;
+}
+
+.program-card:hover button {
+  transform: translate(3px, -3px);
+}
+/* ================================
+   STICKY PREMIUM NAVBAR
+   ================================ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition:
+    background-color 300ms ease,
+    backdrop-filter 300ms ease,
+    box-shadow 300ms ease;
+}
+
+/* When scrolling */
+.header.sf-header-scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition:
+    background-color 300ms ease,
+    backdrop-filter 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.header.sf-header-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+/* Premium sticky header */
+
+header.header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  transition: all 0.35s ease !important;
+}
+
+header.header.sf-header-scrolled {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10) !important;
+  border-bottom: 1px solid rgba(23, 63, 54, 0.10) !important;
+}
+/* Premium program card hover */
+
+.program-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.program-card img {
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+}
+
+.program-card:hover img {
+  transform: scale(1.06);
+}
+
+.program-card:hover .text-link {
+  transform: translate(5px, -3px);
+}
+
+.program-card .text-link {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+/* Our Work scroll reveal */
+
+.sf-scroll-reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sf-scroll-reveal.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sf-reveal-delay-01 {
+  transition-delay: 0.05s;
+}
+
+.sf-reveal-delay-02 {
+  transition-delay: 0.18s;
+}
+
+.sf-reveal-delay-03 {
+  transition-delay: 0.31s;
+}
+.program-card {
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.program-card img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+}
+
+.program-card:hover img {
+  transform: scale(1.06);
+}
+.modal {
+  position: relative;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: #173f36;
+  color: white;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  transform: scale(1.05);
+}
+.modal-backdrop {
+  z-index: 9999;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10000;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 90px 20px 30px;
+}
+
+.modal {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  width: min(600px, 100%);
+}
+/* Donation modal entrance */
+
+.modal-backdrop {
+  animation: sfModalFade 0.25s ease-out;
+}
+
+.donation-modal {
+  animation: sfModalEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sfModalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sfModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* Smooth donation modal animation */
+
+.modal-backdrop {
+  animation: sfModalFade 0.25s ease-out;
+}
+
+.donation-modal {
+  animation: sfModalEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sfModalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sfModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* Program card hover effect */
+
+.program-card {
+  cursor: pointer;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 40, 35, 0.16);
+}
+
+.program-card:hover img {
+  transform: scale(1.04);
+}
+
+.program-card img {
+  transition: transform 0.5s ease;
+}
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header nav {
+    gap: 14px;
+  }
+
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-card {
+    width: 100%;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .statement,
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+  }
+}
+/* Premium donation modal */
+
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  background: rgba(10, 25, 22, 0.55);
+}
+
+.donation-modal {
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.donation-option {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.donation-option:hover {
+  transform: translateX(5px);
+  border-color: #173f36;
+  background: #f6f8f7;
+}
+
+.donation-option svg {
+  transition: transform 0.25s ease;
+}
+
+.donation-option:hover svg {
+  transform: translate(3px, -3px);
+}
+/* Premium hero image */
+
+.hero-visual {
+  overflow: hidden;
+}
+
+.hero-visual img {
+  transform: scale(1.02);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-visual:hover img {
+  transform: scale(1.06);
+}
+
+.impact-stamp {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.hero-visual:hover .impact-stamp {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+/* Hero entrance animation */
+
+.sf-hero-animate {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: sfHeroEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.sf-hero-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.sf-hero-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.sf-hero-delay-3 {
+  animation-delay: 0.36s;
+}
+
+@keyframes sfHeroEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Our Work staggered reveal */
+
+.program-card.sf-scroll-reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.program-card.sf-scroll-reveal.sf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.program-card.sf-reveal-delay-01 {
+  transition-delay: 0.05s;
+}
+
+.program-card.sf-reveal-delay-02 {
+  transition-delay: 0.18s;
+}
+
+.program-card.sf-reveal-delay-03 {
+  transition-delay: 0.31s;
+}
+/* Premium scrolling header */
+
+.header {
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease,
+    padding 0.35s ease;
+}
+
+.header.sf-header-scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+/* Premium donate button */
+
+.donate {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.donate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(23, 63, 54, 0.18);
+}
+
+.donate svg {
+  transition: transform 0.3s ease;
+}
+
+.donate:hover svg {
+  transform: translate(3px, -3px);
+}
+/* Strong Donate button hover effect */
+
+button.donate {
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease !important;
+}
+
+button.donate:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 14px 30px rgba(23, 63, 54, 0.28) !important;
+}
+
+button.donate:hover svg {
+  transform: translate(5px, -3px) !important;
+}
+
+button.donate svg {
+  transition: transform 0.25s ease;
+}
+/* Premium contact section */
+
+.contact-section {
+  position: relative;
+}
+
+.contact-heading h2 {
+  transition: transform 0.4s ease;
+}
+
+.contact-section:hover .contact-heading h2 {
+  transform: translateY(-4px);
+}
+
+.contact-section input,
+.contact-section textarea {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #173f36;
+  box-shadow: 0 0 0 4px rgba(23, 63, 54, 0.08);
+  transform: translateY(-1px);
+}
+/* Premium footer */
+
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer .brand {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+footer .brand:hover {
+  transform: translateY(-3px);
+  opacity: 0.85;
+}
+
+.footer-contact a {
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-contact a:hover {
+  color: #173f36;
+  transform: translateX(4px);
+}
+
+.legal-links a {
+  position: relative;
+  transition: opacity 0.25s ease;
+}
+
+.legal-links a:hover {
+  opacity: 0.65;
+}
+
+.legal-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.legal-links a:hover::after {
+  width: 100%;
+}
+/* Premium mobile menu */
+
+@media (max-width: 768px) {
+  .nav {
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .nav.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav.open a,
+  .nav.open button {
+    animation: sfMenuItem 0.35s ease both;
+  }
+
+  .nav.open a:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+
+  .nav.open a:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .nav.open a:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+
+  .nav.open a:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+
+  @keyframes sfMenuItem {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+/* Hero entrance animation */
+
+.hero h1 {
+  animation: sfHeroTitle 0.9s ease-out both;
+}
+
+.hero p {
+  animation: sfHeroText 0.9s ease-out 0.18s both;
+}
+
+.hero .hero-actions {
+  animation: sfHeroText 0.9s ease-out 0.32s both;
+}
+
+@keyframes sfHeroTitle {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sfHeroText {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Program card interaction */
+
+.program-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(23, 63, 54, 0.12);
+}
+
+.program-card img {
+  transition: transform 0.5s ease;
+}
+
+.program-card:hover img {
+  transform: scale(1.04);
+}
+/* Donation option interaction */
+
+.donation-option {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.donation-option:hover {
+  transform: translateX(6px);
+  box-shadow: 0 10px 25px rgba(23, 63, 54, 0.1);
+  border-color: rgba(23, 63, 54, 0.25);
+}
+
+.donation-option .donation-emoji {
+  transition: transform 0.3s ease;
+}
+
+.donation-option:hover .donation-emoji {
+  transform: scale(1.12);
+}
+/* Navigation link animation */
+
+.nav a {
+  position: relative;
+  transition: opacity 0.25s ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  opacity: 0.75;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+/* Hero image interaction */
+
+.hero-visual {
+  overflow: hidden;
+}
+
+.hero-visual img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-visual:hover img {
+  transform: scale(1.05);
+}
+
+.hero-visual .impact-stamp {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.hero-visual:hover .impact-stamp {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+/* Premium hero CTA */
+
+.text-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.3s ease,
+    gap 0.3s ease;
+}
+
+.text-link:hover {
+  transform: translateX(4px);
+  gap: 12px;
+}
+
+.text-link svg {
+  transition: transform 0.3s ease;
+}
+
+.text-link:hover svg {
+  transform: translate(3px, 3px);
+}
+/* Impact section reveal */
+
+.numbers {
+  transition:
+    transform 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.numbers > div {
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
+}
+
+.numbers > div:hover {
+  transform: translateY(-6px);
+}
+
+.numbers strong {
+  transition: transform 0.35s ease;
+}
+
+.numbers > div:hover strong {
+  transform: scale(1.04);
+}
+/* Premium chatbot quick questions */
+
+.chat-question {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.chat-question:hover {
+  transform: translateY(-2px);
+  border-color: #173f36 !important;
+  box-shadow: 0 6px 18px rgba(23, 63, 54, 0.1);
+}
+/* Sanjushri AI entrance */
+
+.sf-chat-window {
+  animation: sfChatOpen 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: bottom right;
+}
+
+@keyframes sfChatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.sf-typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sf-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #173f36;
+  animation: sfTyping 1.2s infinite ease-in-out;
+}
+
+.sf-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.sf-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes sfTyping {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+/* Sanjushri AI floating button */
+
+.sf-chat-button {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sf-chat-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35) !important;
+}
+
+.sf-chat-button:active {
+  transform: scale(0.95);
+}
+/* Contact form polish */
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #d8d8d2;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: #173f36;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #173f36;
+  box-shadow: 0 0 0 4px rgba(23, 63, 54, 0.08);
+}
+
+.contact-form button {
+  justify-self: start;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 22px;
+  background: #173f36;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(23, 63, 54, 0.16);
+}
+/* Clothes donation form */
+
+.clothes-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  max-width: 620px;
+  margin: 28px auto 0;
+}
+
+.clothes-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #d8d8d2;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: #173f36;
+  font: inherit;
+  outline: none;
+}
+
+.clothes-form input:focus {
+  border-color: #173f36;
+  box-shadow: 0 0 0 4px rgba(23, 63, 54, 0.08);
+}
+
+.clothes-form .full-width {
+  grid-column: 1 / -1;
+}
+
+.clothes-form button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 4px;
+}
+.donation-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 620px;
+  margin: 28px auto 0;
+}
+
+.donation-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #d8d8d2;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: #173f36;
+  font: inherit;
+  outline: none;
+}
+
+.donation-form input:focus {
+  border-color: #173f36;
+  box-shadow: 0 0 0 4px rgba(23, 63, 54, 0.08);
+}
+
+.donation-form input:last-of-type {
+  grid-column: 1 / -1;
+}
+
+.donation-form button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 4px;
+}
